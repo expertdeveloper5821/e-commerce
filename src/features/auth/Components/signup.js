@@ -1,15 +1,17 @@
-import React, { useState } from 'react';
-import {  useDispatch } from 'react-redux';
-
+import React from 'react';
+import {useForm} from "react-hook-form";
 import { Link } from 'react-router-dom';
 
 export default function Signup() {
-  // const dispatch = useDispatch();
+  const {
+    register,
+    handleSubmit,
+    formState: { errors },
+  } = useForm();
 
-
+console.log(errors);
   return (
     <>
-    
     <div className="flex min-h-screen items-center justify-center bg-gradient-to-r from-purple-500 via-pink-500 to-red-500">
   <div className="flex-1 flex-col justify-center px-5 py-5 max-w-sm mx-auto border-gray-900 border-2 shadow-md p-9 rounded-md">
     <div className="sm:mx-auto sm:w-full sm:max-w-sm">
@@ -24,35 +26,39 @@ export default function Signup() {
       </div>
 
       <div className="mt-10 sm:mx-auto sm:w-full sm:max-w-sm">
-        <form className="space-y-6" action="#" method="POST">
+        <form noValidate className="space-y-6" onSubmit={handleSubmit((data)=>{
+          console.log(data);
+        })}>
+      
         <div>
-            <label htmlFor="name" className="block text-sm font-medium leading-6 text-gray-900">
+            <label htmlFor="name" className="block text-sm text-left font-medium leading-6 text-gray-900">
               Full Name
             </label>
             <div className="mt-2">
               <input
                 id="name"
-                name="name"
+                {...register("name",{ required:"please enter your name"})}
                 type="name"
-                autoComplete="name"
-                required
+                
                 className="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
               />
+              {errors.name && <p className='text-white'>{errors.name.message}</p>}
             </div>
             </div>
           <div>
-            <label htmlFor="email" className="block text-sm font-medium leading-6 text-gray-900">
+            <label htmlFor="email" className="block  text-left text-sm font-medium leading-6 text-gray-900">
               Email address
             </label>
             <div className="mt-2">
               <input
                 id="email"
-                name="email"
+                {...register("email",{ required:"email is required",pattern:{value:/\b[\w\.-]+@[\w\.-]+\.\w{2,4}\b/gi,message:"email is not valid"}})}
                 type="email"
-                autoComplete="email"
-                required
+              
                 className="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
               />
+              {errors.email && <p className='text-white'>{errors.email.message}</p>}
+
             </div>
           </div>
 
@@ -61,23 +67,20 @@ export default function Signup() {
               <label htmlFor="password" className="block text-sm font-medium leading-6 text-gray-900">
                 Password
               </label>
-              <div className="text-sm">
-                <a href="#" className="font-semibold text-indigo-600 hover:text-indigo-500">
-                  Forgot password?
-                </a>
-              </div>
+              
               </div>
             <div className="mt-2">
               <input
                 id="password"
-                name="password"
+                {...register("password",{ required:"password is required",pattern:{value:/^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[a-zA-Z]).{8,}$/gm,message:`at least 8 characters/n
+                - must contain at least 1 uppercase letter, 1 lowercase letter, and 1 number/n
+                - Can contain special characters`}})}
                 type="password"
-                required
+              
                 className="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
               />
+              {errors.password && <p className='text-white'>{errors.password.message}</p>}
             </div>
-            
-
             <div>
             <div className="flex items-center justify-between">
               <label htmlFor="password" className="block text-sm font-medium leading-6 mt-2 text-gray-900">
@@ -86,18 +89,19 @@ export default function Signup() {
              
             </div>
             </div>
-
             <div className="mt-3">
               <input
-                id="confirm-password"
-                name="confirm-password"
+                id="confirmpassword"
+                {...register("confirmpassword",{ required:"confirm password required",validate: (value, formValues) => value === formValues.password || "password not match"
+              })}
                 type="password"
-                required
+             
                 className="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
               />
+              {errors.confirmpassword && <p className='text-white'>{errors.confirmpassword.message}</p>}
+
             </div>
           </div>
-
           <div>
             <button
               type="submit"
@@ -107,8 +111,6 @@ export default function Signup() {
             </button>
           </div>
         </form>
-    
-
         <p className="mt-10 text-center text-sm text-white">
           Already Have an Account?{' '}
           <Link to='/login' className="font-semibold leading-6 text-indigo-900 hover:text-indigo-500">
