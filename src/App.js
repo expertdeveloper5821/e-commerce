@@ -1,5 +1,4 @@
 import React from 'react';
-// import Counter from './features/counter/Counter';
 import './App.css';
 import LoginPage from './pages/LoginPage';
 import SignupPage from './pages/SignupPage';
@@ -8,8 +7,6 @@ import SignupPage from './pages/SignupPage';
 import {
   createBrowserRouter,
   RouterProvider,
-  Route,
-  Link,
 } from "react-router-dom";
 
 
@@ -35,11 +32,6 @@ const router = createBrowserRouter([
 function App() {
   return (
     <div className="App">
-      {/* <Home>
-
-      </Home> */}
-      {/* <LoginPage></LoginPage> */}
-      {/* <Banner></Banner> */}
       <RouterProvider router={router} />
 
     </div>
