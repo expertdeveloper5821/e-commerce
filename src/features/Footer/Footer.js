@@ -1,6 +1,9 @@
 import { Link } from 'react-router-dom';
 
 const Footer = () => {
+  const quick=[{to:"/",heading:"Home"},{to:"/products",heading:"Products"},{to:"/About us",heading:"About us"},{to:"/contact",heading:"Contact us"},{to:"/privacy",heading:"Privacy Policy"}];
+  const category=[{to:"/men",heading:"Mens"},{to:"/women",heading:"Womens"},{to:"/Electronic",heading:"Electronics"},{to:"/asecc",heading:"Assesories"},{to:"/Shoes",heading:"Shoes"}];
+
   return (
     <footer className="bg-gradient-to-r from-purple-900 via-blue-900 to-red-500 text-white">
     <div className="container mx-auto py-8 px-4 sm:px-6 lg:px-8">
@@ -21,45 +24,24 @@ const Footer = () => {
              Integer nec lorem eget libero euismod elementum.
           </p>
         </div>
-
           <div className="w-full sm:w-1/6 md:w-1/2 lg:w-1/6 ">
             <h4 className="text-lg font-semibold mb-4">Quick Links</h4>
             <ul  className="space-y-2 ">
-              <li>
-               <Link to="/" className="text-sm hover:text-gray-400">Home</Link>
+              {quick.map((item)=>(
+                <li>
+               <Link to={item.to} className="text-sm hover:text-gray-400">{item.heading}</Link>
                </li>
-              <li>
-                <Link to="/products" className="text-sm hover:text-gray-400">Products</Link>
-              </li>
-              <li>
-                <Link to="/about" className="text-sm hover:text-gray-400">About Us</Link>
-              </li>
-              <li>
-                <Link to="/about" className="text-sm hover:text-gray-400">Contact Us</Link>               </li>
-               <li>
-                <Link to="/about" className="text-sm hover:text-gray-400">Privacy Policy</Link>
-               </li>
+              ))}
              </ul>
            </div>
-          
           <div className="w-full sm:w-1/2 md:w-1/2 lg:w-1/6">
             <h4 className="text-lg font-semibold mb-4">Categories</h4>
             <ul className="space-y-2">
-              <li>
-                <Link to="/category1" className="text-sm hover:text-gray-400">Men</Link>
-              </li>
-              <li>
-                <Link to="/category2" className="text-sm hover:text-gray-400">Women</Link>
-              </li>
-              <li>
-                <Link to="/category3" className="text-sm hover:text-gray-400">Accessories</Link>
-              </li>
-              <li>
-                <Link to="/category3" className="text-sm hover:text-gray-400">Shoes</Link>
-              </li>
-              <li>
-                <Link to="/category3" className="text-sm hover:text-gray-400">Watch</Link>
-              </li>
+              {category.map((item)=>(
+            <li>
+               <Link to={item.to} className="text-sm hover:text-gray-400">{item.heading}</Link>
+               </li>
+              ))}
             </ul>
           </div>
           <div className="w-full s:w-1/2 md:w-1/2 lg:w-1/6">

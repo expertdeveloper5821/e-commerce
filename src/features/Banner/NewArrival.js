@@ -1,7 +1,8 @@
 import { Link } from "react-router-dom" 
+
 export default function NewArrival(){
-
-
+  const commonClass="h-full w-full object-cover object-center";
+  const imageClass="h-64 w-44 overflow-hidden rounded-lg"
 return(
 <section className='new arival'>
         <div className="relative overflow-hidden bg-gradient-to-r from-purple-900 via-blue-900 to-red-500 mb-32">
@@ -15,13 +16,13 @@ return(
                   This year, our new Winter collection will shelter you from the harsh elements of a world that doesn't care
                   if you live or die.
                 </p>
-                {/* <div class="text-4xl text-center animate-pulse">
-  <span class="text-glow">Glowing Text</span>
-</div> */}
+                <Link to="/"
+  className="inline-block mx-auto mt-4 rounded-md border border-transparent bg-indigo-600 px-8 py-3 font-medium text-white hover:bg-indigo-700"
+>Shop Collection
+</Link>
               </div>
               <div>
                 <div className="mt-10">
-                  {/* Decorative image grid */}
                   <div
                     aria-hidden="true"
                     className="pointer-events-none lg:absolute lg:inset-y-0 lg:mx-auto lg:w-full lg:max-w-7xl"
@@ -32,65 +33,61 @@ return(
                           <div className="h-64 w-44 overflow-hidden rounded-lg sm:opacity-0 lg:opacity-100">
                             <img
                               src="https://tailwindui.com/img/ecommerce-images/home-page-03-hero-image-tile-01.jpg"
-                              alt=""
-                              className="h-full w-full object-cover object-center"
+                              alt="men"
+                              className={commonClass}
                             />
                           </div>
-                          <div className="h-64 w-44 overflow-hidden rounded-lg">
+                          <div className={imageClass}>
                             <img
                               src="https://tailwindui.com/img/ecommerce-images/home-page-03-hero-image-tile-02.jpg"
-                              alt=""
-                              className="h-full w-full object-cover object-center"
+                              alt="women"
+                              className={commonClass}
                             />
                           </div>
                         </div>
                         <div className="grid flex-shrink-0 grid-cols-1 gap-y-6 lg:gap-y-8">
-                          <div className="h-64 w-44 overflow-hidden rounded-lg">
+                          <div className={imageClass}>
                             <img
                               src="https://tailwindui.com/img/ecommerce-images/home-page-03-hero-image-tile-03.jpg"
-                              alt=""
-                              className="h-full w-full object-cover object-center"
+                              alt="shirt"
+                              className={commonClass}
                             />
                           </div>
-                          <div className="h-64 w-44 overflow-hidden rounded-lg">
+                          <div className={imageClass}>
                             <img
                               src="https://tailwindui.com/img/ecommerce-images/home-page-03-hero-image-tile-04.jpg"
-                              alt=""
-                              className="h-full w-full object-cover object-center"
+                              alt="img"
+                              className={commonClass}
                             />
                           </div>
-                          <div className="h-64 w-44 overflow-hidden rounded-lg">
+                          <div className={imageClass}>
                             <img
                               src="https://tailwindui.com/img/ecommerce-images/home-page-03-hero-image-tile-05.jpg"
-                              alt=""
-                              className="h-full w-full object-cover object-center"
+                              alt="hero"
+                              className={commonClass}
                             />
                           </div>
                         </div>
                         <div className="grid flex-shrink-0 grid-cols-1 gap-y-6 lg:gap-y-8">
-                          <div className="h-64 w-44 overflow-hidden rounded-lg">
+                          <div className={imageClass}>
                             <img
                               src="https://tailwindui.com/img/ecommerce-images/home-page-03-hero-image-tile-06.jpg"
-                              alt=""
-                              className="h-full w-full object-cover object-center"
+                              alt="imgg1"
+                              className={commonClass}
                             />
                           </div>
-                          <div className="h-64 w-44 overflow-hidden rounded-lg">
+                          <div className={imageClass}>
                             <img
                               src="https://tailwindui.com/img/ecommerce-images/home-page-03-hero-image-tile-07.jpg"
-                              alt=""
-                              className="h-full w-full object-cover object-center"
+                              alt="img3"
+                              className={commonClass}
                             />
                           </div>
                         </div>
                       </div>
                     </div>
                   </div>
-    
-                  <Link to="/"
-  className="inline-block mx-auto rounded-md border border-transparent bg-indigo-600 px-8 py-3 font-medium text-white hover:bg-indigo-700"
->Shop Collection
-</Link>
+                
                 </div>
               </div>
             </div>

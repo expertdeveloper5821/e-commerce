@@ -11,7 +11,7 @@ const Banner = () => {
       className="cursor-pointer w-full max-w-screen-2xl h-full object-cover mt-0"
       role="presentation"
       src={item.image}
-      alt=""
+      alt="banner"
     />
   </div>
     )
