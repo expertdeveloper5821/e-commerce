@@ -19,7 +19,7 @@ export default function Cart() {
         <h2 className='text-3xl pt-4'>Cart</h2>
     <div className="border-t border-gray-200 px-4 py-6 sm:px-6">
     <div className="flow-root">
-      <ul role="list" className="-my-6 divide-y divide-gray-200">
+      <ul className="-my-6 divide-y divide-gray-200">
         {items.map((item) => (
           <li key={item.id} className="flex py-6">
             <div className="h-24 w-24 flex-shrink-0 overflow-hidden rounded-md border border-gray-200">

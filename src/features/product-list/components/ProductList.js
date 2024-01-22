@@ -1,8 +1,10 @@
-import { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import MobileFiltersDialog from './MobileFiltersDialog';
 import SortMenu from './SortMenu';
 import Filters from './Filters';
 import ProductGrid from './ProductGrid';
+import Pagination from './Pagination';
+import { products as staticProducts } from './products';
 
 const sortOptions = [
   { name: 'Most Popular', href: '#', current: true },
@@ -13,50 +15,69 @@ const sortOptions = [
 ];
 
 const filters = [
-    {
-      id: 'color',
-      name: 'Color',
-      options: [
-        { value: 'white', label: 'White', checked: false },
-        { value: 'beige', label: 'Beige', checked: false },
-        { value: 'blue', label: 'Blue', checked: true },
-        { value: 'brown', label: 'Brown', checked: false },
-        { value: 'green', label: 'Green', checked: false },
-        { value: 'purple', label: 'Purple', checked: false },
-      ],
-    },
-    {
-      id: 'category',
-      name: 'Category',
-      options: [
-        { value: 'new-arrivals', label: 'New Arrivals', checked: false },
-        { value: 'sale', label: 'Sale', checked: false },
-        { value: 'travel', label: 'Travel', checked: true },
-        { value: 'organization', label: 'Organization', checked: false },
-        { value: 'accessories', label: 'Accessories', checked: false },
-      ],
-    },
-    {
-      id: 'size',
-      name: 'Size',
-      options: [
-        { value: 's', label: 's', checked: false },
-        { value: 'M', label: 'M', checked: false },
-        { value: 'l', label: 'L', checked: false },
-        { value: 'Xl', label: 'XL', checked: false },
-        { value: '2Xl', label: '2XL', checked: false },
-        { value: '3Xl', label: '3XL', checked: true },
-      ],
-    },
-  ]
+  {
+    id: 'color',
+    name: 'Color',
+    options: [
+      { value: 'white', label: 'White', checked: false },
+      { value: 'beige', label: 'Beige', checked: false },
+      { value: 'blue', label: 'Blue', checked: true },
+      { value: 'brown', label: 'Brown', checked: false },
+      { value: 'green', label: 'Green', checked: false },
+      { value: 'purple', label: 'Purple', checked: false },
+    ],
+  },
+  {
+    id: 'category',
+    name: 'Category',
+    options: [
+      { value: 'new-arrivals', label: 'New Arrivals', checked: false },
+      { value: 'sale', label: 'Sale', checked: false },
+      { value: 'travel', label: 'Travel', checked: true },
+      { value: 'organization', label: 'Organization', checked: false },
+      { value: 'accessories', label: 'Accessories', checked: false },
+    ],
+  },
+  {
+    id: 'size',
+    name: 'Size',
+    options: [
+      { value: 's', label: 's', checked: false },
+      { value: 'M', label: 'M', checked: false },
+      { value: 'l', label: 'L', checked: false },
+      { value: 'Xl', label: 'XL', checked: false },
+      { value: '2Xl', label: '2XL', checked: false },
+      { value: '3Xl', label: '3XL', checked: true },
+    ],
+  },
+];
+
 export default function ProductList() {
   const [mobileFiltersOpen, setMobileFiltersOpen] = useState(false);
+  const [products, setProducts] = useState([]);
+  const [currentPage, setCurrentPage] = useState(1);
+  const itemsPerPage = 8;
+
+  useEffect(() => {
+    setProducts(staticProducts);
+  }, []);
+
+  const startIndex = (currentPage - 1) * itemsPerPage;
+  const endIndex = startIndex + itemsPerPage;
+
+  const currentProducts = products.slice(startIndex, endIndex);
+
+  const handlePageChange = (page) => {
+    setCurrentPage(page);
+  };
+
   return (
     <div>
       <MobileFiltersDialog isOpen={mobileFiltersOpen} onClose={() => setMobileFiltersOpen(false)} />
       <SortMenu sortOptions={sortOptions} />
       <Filters filters={filters} />
-      <ProductGrid />      
+      <ProductGrid products={currentProducts} />
+      <Pagination totalItems={products.length} itemsPerPage={itemsPerPage} currentPage={currentPage} onPageChange={handlePageChange} />
     </div>
   );
 }
